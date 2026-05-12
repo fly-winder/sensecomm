@@ -3,147 +3,432 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="V2X-SenseComm: A multimodal sensing and communication dataset platform for V2X, ISAC, and radar-aided beam prediction research." />
+  <meta name="description" content="V2X-SenseComm: A multimodal sensing and communication dataset platform for V2X, ISAC, and radar-aided near-field beam prediction research." />
   <title>V2X-SenseComm</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header class="site-header">
     <a class="brand" href="#home">V2X-SenseComm</a>
+
     <nav class="nav">
       <a href="#overview">Overview</a>
-      <a href="#pipeline">Generation</a>
+      <a href="#scenarios">Scenarios</a>
       <a href="#dataset">Dataset</a>
-      <a href="#tasks">Tasks</a>
+      <a href="#tutorials">Tutorials</a>
       <a href="#code">Code</a>
-      <a href="#publication">Publication</a>
+      <a href="#publications">Publications</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main id="home">
+    <!-- Hero -->
     <section class="hero">
       <div class="hero-overlay"></div>
+
       <div class="hero-content">
-        <div class="announcement">Dataset platform for V2X sensing and communication research</div>
+        <div class="announcement">
+          Dataset platform for V2X sensing and communication research
+        </div>
+
         <h1>V2X-SenseComm</h1>
+
         <p class="hero-subtitle">
-          A multimodal sensing and communication dataset platform for V2X, ISAC, radar-aided beam prediction,
-          and near-field XL-MIMO communication research.
+          A multimodal sensing and communication dataset platform for radar-aided near-field beam prediction
+          in XL-MIMO V2I communications.
         </p>
+
         <div class="hero-actions">
           <a class="btn primary" href="#dataset">Explore Dataset</a>
+          <a class="btn secondary" href="#scenarios">View Scenarios</a>
           <a class="btn secondary" href="#code">View Code</a>
-          <a class="btn secondary" href="#publication">Read Paper</a>
         </div>
+
         <div class="stats-card">
-          <div><strong>V0.1</strong><span>Current Version</span></div>
-          <div><strong>V2I</strong><span>Scenario Type</span></div>
-          <div><strong>Radar</strong><span>Primary Sensing Modality</span></div>
-          <div><strong>XL-MIMO</strong><span>Communication Setting</span></div>
+          <div>
+            <strong>V0.1</strong>
+            <span>Current Version</span>
+          </div>
+          <div>
+            <strong>V2I</strong>
+            <span>Communication Type</span>
+          </div>
+          <div>
+            <strong>Radar</strong>
+            <span>Primary Sensing Modality</span>
+          </div>
+          <div>
+            <strong>XL-MIMO</strong>
+            <span>Array Setting</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Overview -->
     <section id="overview" class="section">
       <div class="section-title">
         <span>Overview</span>
         <h2>Bridging environmental perception and wireless communication.</h2>
       </div>
+
       <div class="two-column">
-        <p>
-          V2X-SenseComm is designed to support learning-based research at the intersection of vehicular sensing,
-          ray-tracing communication, and beam management. It provides a structured data pipeline that connects
-          sensing observations with communication channels and beam labels.
-        </p>
+        <div>
+          <p>
+            V2X-SenseComm is designed to support learning-based research at the intersection of vehicular sensing,
+            ray-tracing communication, and beam management. The platform connects sensing observations from
+            dynamic V2X environments with communication channels and beam-domain labels.
+          </p>
+
+          <p>
+            The current release focuses on radar-aided near-field beam prediction for XL-MIMO V2I communications.
+            It aims to provide a reproducible dataset and benchmark for studying how sensing information can reduce
+            beam training overhead and improve beam management in high-mobility vehicular scenarios.
+          </p>
+        </div>
+
         <div class="feature-grid">
-          <div class="feature-card"><h3>Multimodal Sensing</h3><p>Radar observations and extensible interfaces for future vision, LiDAR, and positioning modalities.</p></div>
-          <div class="feature-card"><h3>Ray-Tracing Channels</h3><p>Communication channels generated from geometry-aware V2X scenarios.</p></div>
-          <div class="feature-card"><h3>Beam Labels</h3><p>Predefined codebook labels for learning-based beam prediction and beam management.</p></div>
-          <div class="feature-card"><h3>Expandable Platform</h3><p>Designed for future datasets, tasks, baselines, papers, and open-source releases.</p></div>
+          <div class="feature-card">
+            <h3>Multimodal Sensing</h3>
+            <p>
+              Radar observations are provided in the initial release, with extensible interfaces for future vision,
+              LiDAR, positioning, and map-based modalities.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h3>Ray-Tracing Channels</h3>
+            <p>
+              Communication channels are generated from geometry-aware V2X scenarios with infrastructure nodes,
+              target vehicles, and dynamic blockers.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h3>Beam-Domain Labels</h3>
+            <p>
+              Beam indices, beam responses, or beam heatmaps are generated from predefined XL-MIMO codebooks for
+              learning-based beam prediction.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <h3>Expandable Platform</h3>
+            <p>
+              The website and repository are organized for future datasets, scenarios, baselines, papers, and
+              open-source releases.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="pipeline" class="section light">
+    <!-- Scenarios -->
+    <section id="scenarios" class="section light">
       <div class="section-title centered">
-        <span>Dataset Generation</span>
-        <h2>From V2X scene construction to learning-ready beam labels.</h2>
+        <span>Scenarios</span>
+        <h2>Representative V2X environments with sensing and communication coupling.</h2>
       </div>
-      <div class="pipeline">
-        <div class="step"><b>01</b><h3>Scenario Construction</h3><p>Roads, buildings, target vehicles, obstacle vehicles, and infrastructure nodes.</p></div>
-        <div class="step"><b>02</b><h3>Sensing Simulation</h3><p>Radar observations are generated from vehicle-centric or infrastructure-assisted sensing setups.</p></div>
-        <div class="step"><b>03</b><h3>Communication Ray Tracing</h3><p>V2I channels are simulated with geometry-aware propagation and dynamic blockers.</p></div>
-        <div class="step"><b>04</b><h3>Beam Label Generation</h3><p>Optimal beam indices or beam heatmaps are generated from predefined codebooks.</p></div>
-        <div class="step"><b>05</b><h3>Learning Benchmark</h3><p>Data are organized for radar-aided near-field beam prediction and related ML tasks.</p></div>
+
+      <div class="two-column">
+        <div>
+          <p>
+            V2X-SenseComm currently focuses on infrastructure-assisted V2I communication scenarios, where a roadside
+            base station or sensing node observes the surrounding traffic environment and supports beam prediction
+            for target vehicles.
+          </p>
+
+          <p>
+            The scenario design emphasizes the coupling between environmental geometry, radar sensing observations,
+            propagation paths, and beam-domain communication labels. Future versions will include more diverse
+            road layouts, blockage patterns, and mobility configurations.
+          </p>
+        </div>
+
+        <div class="dataset-notes">
+          <h3>Scenario elements</h3>
+          <ul>
+            <li>Roadside infrastructure nodes / base stations</li>
+            <li>Target vehicles acting as communication users</li>
+            <li>Obstacle vehicles causing dynamic blockage</li>
+            <li>Urban roads, street canyons, and NLoS layouts</li>
+            <li>Radar sensing observations and ray-tracing communication channels</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="scenario-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Scenario ID</th>
+              <th>Environment</th>
+              <th>Mobility Setting</th>
+              <th>Propagation Condition</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>scene_01</td>
+              <td>Urban straight road</td>
+              <td>Single target vehicle</td>
+              <td>LoS-dominant</td>
+              <td>Available / In progress</td>
+            </tr>
+
+            <tr>
+              <td>scene_02</td>
+              <td>Multi-lane road</td>
+              <td>Target vehicle with obstacle vehicles</td>
+              <td>Dynamic blockage</td>
+              <td>In progress</td>
+            </tr>
+
+            <tr>
+              <td>scene_03</td>
+              <td>Urban canyon / intersection</td>
+              <td>Multiple vehicles</td>
+              <td>Multipath-rich / NLoS</td>
+              <td>Planned</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="visual-placeholder">
+        <p>
+          Scenario visualization figures will be added here, including road layouts, vehicle placement,
+          BS/RSU deployment, and example radar-communication samples.
+        </p>
       </div>
     </section>
 
+    <!-- Dataset -->
     <section id="dataset" class="section">
       <div class="section-title">
         <span>Dataset</span>
         <h2>Organized for reproducible sensing-assisted communication research.</h2>
       </div>
+
       <div class="dataset-layout">
         <div class="code-block">
 <pre>V2X-SenseComm/
-├── scenes/                 # Scenario descriptions and metadata
-├── sensing/                # Radar observations and sensing features
-├── communication/          # Ray-tracing channels and beam responses
-├── labels/                 # Beam indices, beam maps, or heatmap labels
-├── configs/                # Simulation and codebook configurations
+├── scenarios/              # Scenario descriptions, metadata, and layouts
+├── sensing/
+│   ├── radar/              # Radar observations, spectra, or radar tensors
+│   ├── camera/             # Reserved for future RGB images
+│   └── lidar/              # Reserved for future point clouds
+├── communication/
+│   ├── channel/            # Ray-tracing channel responses
+│   ├── beam_power/         # Beam-domain received power or beam responses
+│   └── codebook/           # XL-MIMO beam codebooks
+├── labels/
+│   ├── best_beam_index.csv # Optimal beam labels
+│   └── beam_heatmap/       # Optional beam map or heatmap labels
+├── splits/                 # Train / validation / test splits
+├── configs/                # Scenario, radar, channel, and codebook configs
 ├── scripts/                # Data generation and preprocessing scripts
 └── README.md</pre>
         </div>
+
         <div class="dataset-notes">
-          <h3>Current release plan</h3>
-          <p>The first release focuses on radar-aided near-field beam prediction for XL-MIMO V2I communications.</p>
+          <h3>What is included?</h3>
+          <p>
+            The dataset is designed to provide aligned sensing observations and communication labels for
+            learning-based beam prediction.
+          </p>
+
           <ul>
-            <li>Dynamic vehicular scenarios</li>
-            <li>Radar sensing observations</li>
-            <li>Communication beam labels</li>
-            <li>Benchmark-ready train/test splits</li>
+            <li>Scenario metadata and vehicle states</li>
+            <li>Radar sensing observations or angular spectra</li>
+            <li>Ray-tracing-based communication channels</li>
+            <li>Beam-domain labels for XL-MIMO V2I links</li>
+            <li>Benchmark-ready train, validation, and test splits</li>
           </ul>
+        </div>
+      </div>
+
+      <div class="cards-3">
+        <div class="task-card">
+          <h3>Data Format</h3>
+          <p>
+            Each sample links sensing observations, scenario metadata, and communication beam labels through a
+            consistent sample index.
+          </p>
+        </div>
+
+        <div class="task-card">
+          <h3>Data Loading</h3>
+          <p>
+            Example Python dataloaders will be provided for reading radar inputs, beam labels, and train/test splits.
+          </p>
+        </div>
+
+        <div class="task-card">
+          <h3>Visualization</h3>
+          <p>
+            Visualization scripts will support scenario rendering, radar spectrum visualization, and beam heatmap display.
+          </p>
+        </div>
+      </div>
+
+      <div class="resource-row">
+        <a class="resource-card" href="#">
+          <h3>Download Dataset</h3>
+          <p>Coming soon</p>
+        </a>
+
+        <a class="resource-card" href="#">
+          <h3>Dataset Format</h3>
+          <p>Documentation coming soon</p>
+        </a>
+
+        <a class="resource-card" href="#">
+          <h3>Example Samples</h3>
+          <p>Visualization examples coming soon</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Tutorials -->
+    <section id="tutorials" class="section light">
+      <div class="section-title centered">
+        <span>Tutorials</span>
+        <h2>From V2X scene construction to learning-ready beam labels.</h2>
+      </div>
+
+      <div class="pipeline">
+        <div class="step">
+          <b>01</b>
+          <h3>Environment Setup</h3>
+          <p>
+            Install the required simulation, ray-tracing, and data processing environments.
+          </p>
+        </div>
+
+        <div class="step">
+          <b>02</b>
+          <h3>Scenario Construction</h3>
+          <p>
+            Load road scenes, place target vehicles and obstacle vehicles, and configure the BS/RSU position.
+          </p>
+        </div>
+
+        <div class="step">
+          <b>03</b>
+          <h3>Sensing Data Generation</h3>
+          <p>
+            Generate radar observations, radar spectra, or other sensing features from the V2X scenario.
+          </p>
+        </div>
+
+        <div class="step">
+          <b>04</b>
+          <h3>Communication Channel Generation</h3>
+          <p>
+            Use ray tracing to obtain V2I channel responses and beam-domain communication measurements.
+          </p>
+        </div>
+
+        <div class="step">
+          <b>05</b>
+          <h3>Beam Label Generation</h3>
+          <p>
+            Evaluate XL-MIMO codebooks and generate best beam indices, beam responses, or beam heatmaps.
+          </p>
+        </div>
+
+        <div class="step">
+          <b>06</b>
+          <h3>Dataset Visualization</h3>
+          <p>
+            Visualize scenarios, radar angular spectra, beam maps, and representative data samples.
+          </p>
         </div>
       </div>
     </section>
 
-    <section id="tasks" class="section light">
-      <div class="section-title centered">
-        <span>ML Tasks</span>
-        <h2>Initial and future research tasks supported by V2X-SenseComm.</h2>
-      </div>
-      <div class="cards-3">
-        <div class="task-card"><h3>Radar-Aided Beam Prediction</h3><p>Predict the optimal communication beam using radar angular spectra or radar-derived representations.</p></div>
-        <div class="task-card"><h3>Beam Map Learning</h3><p>Learn spatial beam heatmaps that connect sensing observations with fine-grained beam spaces.</p></div>
-        <div class="task-card"><h3>Near-Field Beam Management</h3><p>Support XL-MIMO beam training under mixed near-field and far-field propagation conditions.</p></div>
-      </div>
-    </section>
-
+    <!-- Code -->
     <section id="code" class="section">
       <div class="section-title">
-        <span>Code and Resources</span>
-        <h2>Code, dataset, and documentation will be released progressively.</h2>
+        <span>Code</span>
+        <h2>Data generation, visualization, and benchmark code.</h2>
       </div>
+
+      <div class="two-column">
+        <div>
+          <p>
+            The V2X-SenseComm codebase will include scripts for scenario visualization, radar sensing data generation,
+            communication channel generation, beam label construction, and learning-based benchmark experiments.
+          </p>
+
+          <div class="code-block">
+<pre>git clone https://github.com/yourname/V2X-SenseComm.git
+cd V2X-SenseComm
+pip install -r requirements.txt</pre>
+          </div>
+        </div>
+
+        <div class="dataset-notes">
+          <h3>Planned code modules</h3>
+          <ul>
+            <li>Scenario loading and visualization</li>
+            <li>Radar sensing data generation</li>
+            <li>Ray-tracing communication simulation</li>
+            <li>Beam codebook evaluation</li>
+            <li>Dataset preprocessing and dataloaders</li>
+            <li>Baseline training and evaluation</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="resource-row">
-        <a class="resource-card" href="#"><h3>Dataset</h3><p>Coming soon</p></a>
-        <a class="resource-card" href="#"><h3>Code</h3><p>Coming soon</p></a>
-        <a class="resource-card" href="#"><h3>Documentation</h3><p>Coming soon</p></a>
+        <a class="resource-card" href="#">
+          <h3>GitHub Repository</h3>
+          <p>Coming soon</p>
+        </a>
+
+        <a class="resource-card" href="#">
+          <h3>Installation Guide</h3>
+          <p>Coming soon</p>
+        </a>
+
+        <a class="resource-card" href="#">
+          <h3>Benchmark Code</h3>
+          <p>Coming soon</p>
+        </a>
       </div>
     </section>
 
-    <section id="publication" class="section light">
+    <!-- Publications -->
+    <section id="publications" class="section light">
       <div class="section-title">
-        <span>Publication</span>
-        <h2>Radar-aided near-field beam prediction for XL-MIMO V2I communications.</h2>
+        <span>Publications</span>
+        <h2>Related papers and citation information.</h2>
       </div>
+
       <div class="publication-card">
-        <h3>Radar-Aided Near-Field Beam Prediction via Beam Map Learning for XL-MIMO V2I Communications</h3>
-        <p class="authors">Jiali Nie, et al.</p>
-        <p class="venue">Manuscript in preparation / under review.</p>
+        <h3>
+          Radar-Aided Near-Field Beam Prediction via Beam Map Learning for XL-MIMO V2I Communications
+        </h3>
+
+        <p class="authors">
+          Jiali Nie, et al.
+        </p>
+
+        <p class="venue">
+          Manuscript in preparation / under review.
+        </p>
+
         <pre>@article{v2xsensecomm2026,
   title   = {Radar-Aided Near-Field Beam Prediction via Beam Map Learning for XL-MIMO V2I Communications},
   author  = {Nie, Jiali and others},
@@ -151,24 +436,67 @@
   year    = {2026}
 }</pre>
       </div>
+
+      <div class="publication-card">
+        <h3>
+          V2X-SenseComm: A Multimodal Sensing and Communication Dataset Platform for V2X Research
+        </h3>
+
+        <p class="authors">
+          Dataset paper / technical report.
+        </p>
+
+        <p class="venue">
+          Coming soon.
+        </p>
+      </div>
     </section>
 
+    <!-- News -->
     <section id="news" class="section">
       <div class="section-title">
         <span>News</span>
         <h2>Updates</h2>
       </div>
+
       <div class="timeline">
-        <div><time>2026-05</time><p>V2X-SenseComm project homepage is launched.</p></div>
-        <div><time>2026-05</time><p>Initial data generation pipeline for radar-aided V2I beam prediction is completed.</p></div>
+        <div>
+          <time>2026-05</time>
+          <p>V2X-SenseComm project homepage is launched.</p>
+        </div>
+
+        <div>
+          <time>2026-05</time>
+          <p>Initial data generation pipeline for radar-aided V2I beam prediction is completed.</p>
+        </div>
+
+        <div>
+          <time>2026-05</time>
+          <p>Scenario visualization and dataset documentation are under preparation.</p>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- Contact -->
   <footer id="contact" class="footer">
     <h2>V2X-SenseComm</h2>
-    <p>A multimodal sensing and communication dataset platform for V2X research.</p>
-    <p class="small">© 2026 V2X-SenseComm Team. Replace this footer with your lab, university, and contact information.</p>
+
+    <p>
+      A multimodal sensing and communication dataset platform for V2X research.
+    </p>
+
+    <p>
+      For questions about the dataset, code, or collaboration, please contact the project maintainer.
+    </p>
+
+    <p class="small">
+      Jiali Nie · Southeast University · Email: your-email@example.com
+    </p>
+
+    <p class="small">
+      © 2026 V2X-SenseComm Team. All rights reserved.
+    </p>
   </footer>
 </body>
 </html>
