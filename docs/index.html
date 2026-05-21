@@ -132,85 +132,160 @@
 
     <!-- Scenarios -->
     <section id="scenarios" class="section light">
-      <div class="section-title centered">
-        <span>Scenarios</span>
-        <h2>Representative V2X environments with sensing and communication coupling.</h2>
-      </div>
+  <div class="section-title centered">
+    <span>Scenarios</span>
+    <h2>Representative V2X environments for sensing-assisted communication research.</h2>
+    <p class="section-intro">
+      V2X-SenseComm includes diverse urban vehicular scenarios designed to study the coupling between
+      environmental sensing, ray-tracing communication channels, and beam-domain labels. The current scenarios
+      are organized into three representative groups: single-vehicle scenes, dynamic traffic scenes, and
+      NLoS corner scenes.
+    </p>
+  </div>
 
-      <div class="two-column">
-        <div>
-          <p>
-            V2X-SenseComm currently focuses on infrastructure-assisted V2I communication scenarios, where a roadside
-            base station or sensing node observes the surrounding traffic environment and supports beam prediction
-            for target vehicles.
-          </p>
+  <!-- Scenario Summary -->
+  <div class="scenario-summary">
+    <div class="summary-card">
+      <strong>20</strong>
+      <span>Total Scenarios</span>
+    </div>
 
-          <p>
-            The scenario design emphasizes the coupling between environmental geometry, radar sensing observations,
-            propagation paths, and beam-domain communication labels. Future versions will include more diverse
-            road layouts, blockage patterns, and mobility configurations.
-          </p>
-        </div>
+    <div class="summary-card">
+      <strong>3</strong>
+      <span>Scenario Groups</span>
+    </div>
 
-        <div class="dataset-notes">
-          <h3>Scenario elements</h3>
-          <ul>
-            <li>Roadside infrastructure nodes / base stations</li>
-            <li>Target vehicles acting as communication users</li>
-            <li>Obstacle vehicles causing dynamic blockage</li>
-            <li>Urban roads, street canyons, and NLoS layouts</li>
-            <li>Radar sensing observations and ray-tracing communication channels</li>
-          </ul>
-        </div>
-      </div>
+    <div class="summary-card">
+      <strong>5</strong>
+      <span>Single-Vehicle Scenes</span>
+    </div>
 
-      <div class="scenario-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Scenario ID</th>
-              <th>Environment</th>
-              <th>Mobility Setting</th>
-              <th>Propagation Condition</th>
-              <th>Status</th>
-            </tr>
-          </thead>
+    <div class="summary-card">
+      <strong>5</strong>
+      <span>NLoS Corner Scenes</span>
+    </div>
+  </div>
 
-          <tbody>
-            <tr>
-              <td>scene_01</td>
-              <td>Urban straight road</td>
-              <td>Single target vehicle</td>
-              <td>LoS-dominant</td>
-              <td>Available / In progress</td>
-            </tr>
-
-            <tr>
-              <td>scene_02</td>
-              <td>Multi-lane road</td>
-              <td>Target vehicle with obstacle vehicles</td>
-              <td>Dynamic blockage</td>
-              <td>In progress</td>
-            </tr>
-
-            <tr>
-              <td>scene_03</td>
-              <td>Urban canyon / intersection</td>
-              <td>Multiple vehicles</td>
-              <td>Multipath-rich / NLoS</td>
-              <td>Planned</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="visual-placeholder">
+  <!-- Representative Scenario Images -->
+  <div class="scenario-gallery three-scenes">
+    <div class="gallery-card">
+      <img src="assets/images/scenarios/hongkong.png" alt="Hong Kong single-vehicle V2X scenario">
+      <div class="gallery-info">
+        <h3>Single-Vehicle Scene</h3>
         <p>
-          Scenario visualization figures will be added here, including road layouts, vehicle placement,
-          BS/RSU deployment, and example radar-communication samples.
+          Representative urban scene with a single target vehicle, suitable for analyzing basic sensing-to-beam
+          relationships under relatively clean propagation conditions.
         </p>
+        <div class="tag-row">
+          <span class="tag">Hong Kong</span>
+          <span class="tag">Single target</span>
+          <span class="tag">LoS-dominant</span>
+        </div>
       </div>
-    </section>
+    </div>
+
+    <div class="gallery-card">
+      <img src="assets/images/scenarios/nanjing.png" alt="Nanjing dynamic traffic V2X scenario">
+      <div class="gallery-info">
+        <h3>Dynamic Traffic Scene</h3>
+        <p>
+          Multi-vehicle traffic scene with dynamic mobility and blockage effects, supporting learning-based beam
+          prediction in realistic vehicular environments.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Nanjing</span>
+          <span class="tag">Dynamic traffic</span>
+          <span class="tag">Blockage</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-card">
+      <img src="assets/images/scenarios/nlosbeijing.png" alt="Beijing NLoS corner V2X scenario">
+      <div class="gallery-info">
+        <h3>NLoS Corner Scene</h3>
+        <p>
+          Challenging corner scenario with dynamic vehicles and non-line-of-sight propagation, designed to
+          evaluate sensing-assisted beam prediction under rich multipath conditions.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Beijing</span>
+          <span class="tag">NLoS corner</span>
+          <span class="tag">Multipath-rich</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scenario Groups -->
+  <div class="scenario-type-grid">
+    <div class="scenario-type-card">
+      <h3>Single-Vehicle Scenes</h3>
+      <p>
+        The single-vehicle group contains core urban scenes from Beijing and Hong Kong. These scenes are used
+        to study the fundamental mapping between sensing observations, propagation geometry, and beam-domain labels.
+      </p>
+    </div>
+
+    <div class="scenario-type-card">
+      <h3>Dynamic Traffic Scenes</h3>
+      <p>
+        The dynamic traffic group includes multi-vehicle urban scenes with target vehicles and obstacle vehicles.
+        These scenes are suitable for studying mobility, dynamic blockage, and beam variation.
+      </p>
+    </div>
+
+    <div class="scenario-type-card">
+      <h3>NLoS Corner Scenes</h3>
+      <p>
+        The NLoS group contains corner-like street layouts with dynamic traffic. These scenarios introduce more
+        challenging propagation paths and stronger dependence on environmental sensing.
+      </p>
+    </div>
+  </div>
+
+  <!-- Full Scenario Catalog -->
+  <div class="scenario-table">
+    <h3 class="subsection-title">Full Scenario Catalog</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Scene ID</th>
+          <th>Region / City</th>
+          <th>Traffic Type</th>
+          <th>Propagation</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr><td>beijing_zhongguancun</td><td>Beijing</td><td>Single vehicle</td><td>LoS / mixed</td><td>Single-Vehicle</td></tr>
+        <tr><td>bj_chaoyang</td><td>Beijing</td><td>Single vehicle</td><td>LoS / mixed</td><td>Single-Vehicle</td></tr>
+        <tr><td>bj_dianshitai</td><td>Beijing</td><td>Single vehicle</td><td>LoS / mixed</td><td>Single-Vehicle</td></tr>
+        <tr><td>hongkong</td><td>Hong Kong</td><td>Single vehicle</td><td>LoS / mixed</td><td>Single-Vehicle</td></tr>
+        <tr><td>hongkonghigh</td><td>Hong Kong</td><td>Single vehicle</td><td>LoS / mixed</td><td>Single-Vehicle</td></tr>
+
+        <tr><td>boston</td><td>Boston</td><td>Dynamic traffic</td><td>LoS / mixed</td><td>Dynamic Traffic</td></tr>
+        <tr><td>london</td><td>London</td><td>Dynamic traffic</td><td>LoS / mixed</td><td>Dynamic Traffic</td></tr>
+        <tr><td>londonhigh</td><td>London</td><td>Dynamic traffic</td><td>LoS / mixed</td><td>Dynamic Traffic</td></tr>
+        <tr><td>manhattanhigh</td><td>Manhattan</td><td>Dynamic traffic</td><td>LoS / mixed</td><td>Dynamic Traffic</td></tr>
+        <tr><td>nanjing1</td><td>Nanjing</td><td>Dynamic traffic</td><td>LoS / mixed</td><td>Dynamic Traffic</td></tr>
+        <tr><td>nanjing2</td><td>Nanjing</td><td>Dynamic traffic</td><td>LoS / mixed</td><td>Dynamic Traffic</td></tr>
+        <tr><td>suburbnanjing</td><td>Nanjing suburb</td><td>Dynamic traffic</td><td>LoS / mixed</td><td>Dynamic Traffic</td></tr>
+        <tr><td>shanghai1</td><td>Shanghai</td><td>Dynamic traffic</td><td>LoS / mixed</td><td>Dynamic Traffic</td></tr>
+        <tr><td>shanghai2</td><td>Shanghai</td><td>Dynamic traffic</td><td>LoS / mixed</td><td>Dynamic Traffic</td></tr>
+        <tr><td>shanghaihigh</td><td>Shanghai</td><td>Dynamic traffic</td><td>LoS / mixed</td><td>Dynamic Traffic</td></tr>
+
+        <tr><td>nlosbeijing1</td><td>Beijing</td><td>Dynamic traffic</td><td>NLoS corner</td><td>NLoS Corner</td></tr>
+        <tr><td>nlosbeijing2</td><td>Beijing</td><td>Dynamic traffic</td><td>NLoS corner</td><td>NLoS Corner</td></tr>
+        <tr><td>nlosbeijing3</td><td>Beijing</td><td>Dynamic traffic</td><td>NLoS corner</td><td>NLoS Corner</td></tr>
+        <tr><td>nlosnewyork1</td><td>New York</td><td>Dynamic traffic</td><td>NLoS corner</td><td>NLoS Corner</td></tr>
+        <tr><td>nlosnewyork2</td><td>New York</td><td>Dynamic traffic</td><td>NLoS corner</td><td>NLoS Corner</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
     <!-- Dataset -->
     <section id="dataset" class="section">
