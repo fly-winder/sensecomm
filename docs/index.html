@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="V2X-SenseComm: A multimodal V2X dataset with camera, LiDAR, radar, GPS, and communication data for integrated sensing and communication tasks." />
+  <title>V2X-SenseComm</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home">V2X-SenseComm</a>
+
+      <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#scenarios">Scenarios</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#tutorials">Tutorials</a>
+        <a href="#code">Code</a>
+        <a href="#publications">Publications</a>
+        <a href="#download">Download</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <div class="announcement">
+          Dataset platform for V2X sensing and communication research
+        </div>
+
+        <h1>V2X-SenseComm</h1>
+
+        <p class="hero-subtitle">
+          A multimodal V2X dataset integrating camera, LiDAR, radar, GPS, and communication data.<br>
+          Built for integrated sensing and communication (ISAC) tasks in urban V2I scenarios.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#dataset">Explore Dataset</a>
+          <a class="btn secondary" href="#scenarios">View Scenarios</a>
+          <a class="btn secondary" href="#code">View Code</a>
+        </div>
+
+        <div class="stats-card">
+          <div>
+            <strong>Camera</strong>
+            <span>Visual Modality</span>
+          </div>
+          <div>
+            <strong>LiDAR</strong>
+            <span>Point-Cloud Modality</span>
+          </div>
+          <div>
+            <strong>Radar</strong>
+            <span>Radio Sensing Modality</span>
+          </div>
+          <div>
+            <strong>GPS</strong>
+            <span>Positioning Modality</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section id="overview" class="section overview-section">
+      <div class="section-title centered">
+        <span>Overview</span>
+      </div>
+
+      <div class="overview-layout">
+        <div class="overview-lede">
+          <p>
+            V2X-SenseComm generates multimodal V2I data from configurable urban scenes. Road maps are
+            loaded from OpenStreetMap world data and reconstructed in Sionna ray tracing to produce
+            synchronized near-field sensing and communication samples.
+          </p>
+
+          <p>
+            Each sample aligns scene metadata, vehicle states, camera, LiDAR, radar, GPS, ray-tracing V2I
+            channels, and communication-side labels. Scenarios, sensing viewpoints, weather, carrier
+            frequency, vehicle speed, and traffic settings can be configured for different ISAC tasks.
+          </p>
+
+          <div class="overview-facts">
+            <div>
+              <strong>Beam</strong>
+              <span>Prediction</span>
+            </div>
+            <div>
+              <strong>Blockage</strong>
+              <span>Prediction</span>
+            </div>
+            <div>
+              <strong>Channel</strong>
+              <span>Estimation</span>
+            </div>
+          </div>
+        </div>
+
+        <figure class="overview-figure">
+          <img src="assets/figures/overview/v2x-sensecomm-overview.png" alt="V2X-SenseComm multimodal V2I data overview">
+        </figure>
+      </div>
+
+      <div class="overview-card-grid">
+        <article class="overview-card">
+          <span>01</span>
+          <h3>Generation Pipeline</h3>
+          <ul>
+            <li>Load roads and buildings from OpenStreetMap data.</li>
+            <li>Configure traffic scenes, vehicle motion, and sensing viewpoints.</li>
+            <li>Generate synchronized sensing records and V2I channels in Sionna.</li>
+          </ul>
+        </article>
+
+        <article class="overview-card">
+          <span>02</span>
+          <h3>Data Contents</h3>
+          <ul>
+            <li>Camera images, LiDAR point clouds, radar data, and GPS positions.</li>
+            <li>Ray-tracing V2I channels and communication-side labels.</li>
+            <li>Scene metadata, vehicle states, sample indexes, and split files.</li>
+          </ul>
+        </article>
+
+        <article class="overview-card">
+          <span>03</span>
+          <h3>Supported Tasks</h3>
+          <ul>
+            <li>Beam prediction and beam management.</li>
+            <li>Blockage prediction and NLoS-aware communication.</li>
+            <li>Channel estimation, link adaptation, and multimodal ISAC learning.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Scenarios -->
+    <section id="scenarios" class="section light">
+  <div class="section-title centered">
+    <span>Scenarios</span>
+    <h2>Urban V2X scenarios</h2>
+    <p class="section-intro">
+      V2X-SenseComm contains 20 urban map scenes with bidirectional six-lane roads. From the inner lane to the outer lane, the baseline vehicle speeds are set to 5 m/s, 15 m/s, and 25 m/s.
+    </p>
+  </div>
+
+  <!-- Scenario Summary -->
+  <div class="scenario-summary">
+    <div class="summary-card">
+      <strong>20</strong>
+      <span>Total Scenarios</span>
+    </div>
+
+    <div class="summary-card">
+      <strong>17</strong>
+      <span>Training Scenarios</span>
+    </div>
+
+    <div class="summary-card">
+      <strong>3</strong>
+      <span>Test Scenarios</span>
+    </div>
+  </div>
+
+  <div class="scenario-summary split-summary">
+    <div class="summary-card">
+      <strong>6</strong>
+      <span>Road Lanes</span>
+    </div>
+
+    <div class="summary-card">
+      <strong>5-15-25</strong>
+      <span>Lane Speeds (m/s)</span>
+    </div>
+
+    <div class="summary-card">
+      <strong>3</strong>
+      <span>Scenario Groups</span>
+    </div>
+  </div>
+
+  <!-- Representative Scenario Images -->
+  <div class="scenario-gallery three-scenes">
+    <div class="gallery-card">
+      <img src="assets/images/scenarios/hongkong.png" alt="Hong Kong single-vehicle V2X scenario">
+      <div class="gallery-info">
+        <h3>Single-Vehicle Scene</h3>
+        <div class="tag-row">
+          <span class="tag">scene_04 · Hong Kong</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-card">
+      <img src="assets/images/scenarios/nanjing.png" alt="Nanjing dynamic traffic V2X scenario">
+      <div class="gallery-info">
+        <h3>Dynamic Traffic Scene</h3>
+        <div class="tag-row">
+          <span class="tag">scene_11 · Nanjing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-card">
+      <img src="assets/images/scenarios/nlosbeijing.png" alt="Beijing NLoS corner V2X scenario">
+      <div class="gallery-info">
+        <h3>NLoS Corner Scene</h3>
+        <div class="tag-row">
+          <span class="tag">scene_16 · Beijing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Scenario Catalog -->
+  <div class="scenario-table">
+    <h3 class="subsection-title">Full Scenario Catalog</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Scene ID</th>
+          <th>Region / City</th>
+          <th>Traffic Type</th>
+          <th>Propagation</th>
+          <th>Category</th>
+          <th>Dataset Split</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr><td>scene_01</td><td>Beijing</td><td>Single vehicle</td><td>LoS / mixed</td><td><span class="table-badge category-single">Single-Vehicle</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_02</td><td>Beijing</td><td>Single vehicle</td><td>LoS / mixed</td><td><span class="table-badge category-single">Single-Vehicle</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_03</td><td>Beijing</td><td>Single vehicle</td><td>LoS / mixed</td><td><span class="table-badge category-single">Single-Vehicle</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_04</td><td>Hong Kong</td><td>Single vehicle</td><td>LoS / mixed</td><td><span class="table-badge category-single">Single-Vehicle</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_05</td><td>Hong Kong</td><td>Single vehicle</td><td>LoS / mixed</td><td><span class="table-badge category-single">Single-Vehicle</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+
+        <tr><td>scene_06</td><td>Manhattan</td><td>Dynamic traffic</td><td>LoS / mixed</td><td><span class="table-badge category-dynamic">Dynamic Traffic</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_07</td><td>Boston</td><td>Dynamic traffic</td><td>LoS / mixed</td><td><span class="table-badge category-dynamic">Dynamic Traffic</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_08</td><td>London</td><td>Dynamic traffic</td><td>LoS / mixed</td><td><span class="table-badge category-dynamic">Dynamic Traffic</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_09</td><td>London</td><td>Dynamic traffic</td><td>LoS / mixed</td><td><span class="table-badge category-dynamic">Dynamic Traffic</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_10</td><td>Nanjing</td><td>Dynamic traffic</td><td>LoS / mixed</td><td><span class="table-badge category-dynamic">Dynamic Traffic</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_11</td><td>Nanjing</td><td>Dynamic traffic</td><td>LoS / mixed</td><td><span class="table-badge category-dynamic">Dynamic Traffic</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_12</td><td>Nanjing</td><td>Dynamic traffic</td><td>LoS / mixed</td><td><span class="table-badge category-dynamic">Dynamic Traffic</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+
+        <tr class="test-row"><td>scene_13</td><td>Shanghai</td><td>Single vehicle</td><td>LoS / mixed</td><td><span class="table-badge category-single">Single-Vehicle</span></td><td><span class="table-badge split-test">Test</span></td></tr>
+        <tr class="test-row"><td>scene_14</td><td>Shanghai</td><td>Dynamic traffic</td><td>LoS / mixed</td><td><span class="table-badge category-dynamic">Dynamic Traffic</span></td><td><span class="table-badge split-test">Test</span></td></tr>
+        <tr class="test-row"><td>scene_15</td><td>Shanghai</td><td>Dynamic traffic</td><td>NLoS / mixed</td><td><span class="table-badge category-nlos">NLoS Corner</span></td><td><span class="table-badge split-test">Test</span></td></tr>
+
+        <tr><td>scene_16</td><td>Beijing</td><td>Dynamic traffic</td><td>NLoS corner</td><td><span class="table-badge category-nlos">NLoS Corner</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_17</td><td>Beijing</td><td>Dynamic traffic</td><td>NLoS corner</td><td><span class="table-badge category-nlos">NLoS Corner</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_18</td><td>Beijing</td><td>Dynamic traffic</td><td>NLoS corner</td><td><span class="table-badge category-nlos">NLoS Corner</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_19</td><td>New York</td><td>Dynamic traffic</td><td>NLoS corner</td><td><span class="table-badge category-nlos">NLoS Corner</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        <tr><td>scene_20</td><td>New York</td><td>Dynamic traffic</td><td>NLoS corner</td><td><span class="table-badge category-nlos">NLoS Corner</span></td><td><span class="table-badge split-train">Training</span></td></tr>
+        
+      </tbody>
+    </table>
+  </div>
+</section>
+
+    <!-- Dataset -->
+    <section id="dataset" class="section dataset-section">
+      <div class="section-title centered">
+        <span>Dataset</span>
+        <h2>Storage format and usage</h2>
+        <p class="section-intro">
+          Each sample is indexed by scene, speed run, and frame. The index file links synchronized sensing files,
+          ray-tracing communication channels, beam labels, and metadata for direct loading in Python.
+        </p>
+      </div>
+
+      <div class="dataset-subsection-title">
+        <h3>visualization</h3>
+        <p>
+          Each frame can be visualized from multiple sensing and communication views. The placeholders below will
+          be replaced with representative image, LiDAR, radar, and channel examples from the same synchronized sample.
+        </p>
+      </div>
+
+      <div class="dataset-visual-grid">
+        <article class="modality-card">
+          <div class="modality-preview preview-camera"><span>Image Placeholder</span></div>
+          <h3>Image</h3>
+          <p>RGB road-view images saved per frame as PNG files.</p>
+        </article>
+
+        <article class="modality-card">
+          <div class="modality-preview preview-lidar"><span>LiDAR Preview</span></div>
+          <h3>LiDAR</h3>
+          <p>Point clouds with 3D coordinates and per-point distance values.</p>
+        </article>
+
+        <article class="modality-card">
+          <div class="modality-preview preview-radar"><span>Radar Preview</span></div>
+          <h3>Radar</h3>
+          <p>Complex radar cubes organized by chirps, antennas, and samples.</p>
+        </article>
+
+        <article class="modality-card">
+          <div class="modality-preview preview-channel"><span>Channel Preview</span></div>
+          <h3>Channel</h3>
+          <p>Complex ray-tracing channel matrices generated by Sionna.</p>
+        </article>
+      </div>
+
+      <div class="dataset-variable-row">
+        <article>
+          <strong>GPS</strong>
+          <span>true_position / measured_position</span>
+        </article>
+        <article>
+          <strong>LoS Exists</strong>
+          <span>Binary LoS state for each frame</span>
+        </article>
+        <article>
+          <strong>Beam Label</strong>
+          <span>best_beam_index_3d and top-k candidates</span>
+        </article>
+        <article>
+          <strong>Beam Power</strong>
+          <span>best_power and topk_powers</span>
+        </article>
+      </div>
+
+      <div class="dataset-explain-wide">
+        <div class="directory-intro">
+          <h3>Directory logic</h3>
+          <p>
+            The root index files provide dataset-level access. Each scene has its own index, and each speed run
+            stores frame-level samples. A single row points to all files belonging to the same frame, so sensing
+            observations, channel matrices, and beam labels can be loaded together.
+          </p>
+        </div>
+
+        <div class="format-note-grid">
+          <div><strong>scene_XX</strong><span>Urban map scene identifier</span></div>
+          <div><strong>speed_+5</strong><span>Vehicle speed and direction run</span></div>
+          <div><strong>frame_000000</strong><span>Aligned sensing and communication sample</span></div>
+        </div>
+      </div>
+
+      <div class="dataset-tree-grid">
+        <div class="format-panel directory-tree">
+          <h3>File Hierarchy</h3>
+<pre><code>dataset/
+├── index.csv
+├── train_index.csv
+├── test_index.csv
+├── scene_01/
+│   ├── index.csv
+│   ├── speed_+5/
+│   │   ├── meta.json
+│   │   ├── index.csv
+│   │   ├── camera/
+│   │   │   ├── frame_000000.png
+│   │   │   ├── frame_000001.png
+│   │   │   ├── ...
+│   │   ├── lidar/
+│   │   │   ├── frame_000000.npz
+│   │   │   ├── frame_000001.npz
+│   │   │   ├── ...
+│   │   ├── radar/
+│   │   │   ├── frame_000000.npz
+│   │   │   ├── frame_000001.npz
+│   │   │   ├── ...
+│   │   ├── gps/
+│   │   │   ├── frame_000000.npz
+│   │   │   ├── frame_000001.npz
+│   │   │   ├── ...
+│   │   ├── channel/
+│   │   │   ├── frame_000000.npz
+│   │   │   ├── frame_000001.npz
+│   │   │   ├── ...
+│   │   ├── beam_label/
+│   │       ├── frame_000000.json
+│   │       ├── frame_000001.json
+│   │       ├── ...
+│   ├── ...
+│   ├── speed_-5/
+│       ├── ...
+├── ...
+├── scene_20/</code></pre>
+        </div>
+
+        <div class="dataset-schema-block">
+          <h3>File contents description</h3>
+          <p>
+            The dataset uses run-level metadata, three-level index files, and frame-wise modality files. Each
+            frame is stored as aligned sensing, channel, GPS, and beam-label files referenced by the index.
+          </p>
+
+          
+
+          <div class="schema-group">
+            <h4>index.csv</h4>
+            <ul>
+              <li><code>dataset/index.csv</code>: global index covering all scenes and runs.</li>
+              <li><code>dataset/&lt;scene_id&gt;/index.csv</code>: scene-level index.</li>
+              <li><code>dataset/&lt;scene_id&gt;/&lt;run_id&gt;/index.csv</code>: run-level index for one speed configuration.</li>
+              <li>Each row contains <code>frame_idx</code>, <code>scene_id</code>, <code>run_id</code>, <code>weather_type</code>, <code>enable_occluder_cars</code>, and paths to all frame files.</li>
+            </ul>
+          </div>
+
+          <div class="schema-group">
+            <h4>Image</h4>
+            <ul>
+              <li><code>camera/frame_xxxxxx.png</code> <span>PNG image</span> RGB image captured from the infrastructure-side sensing viewpoint.</li>
+              <li>Image dimensions follow the camera simulator setting; each frame is aligned with LiDAR, radar, GPS, channel, and beam-label files through <code>index.csv</code>.</li>
+            </ul>
+          </div>
+
+          <div class="schema-group">
+            <h4>LiDAR</h4>
+            <ul>
+              <li><code>lidar/frame_xxxxxx.npz</code> stores point-cloud arrays for one frame.</li>
+              <li><code>xyz</code> <span>shape: Np x 3</span> 3D point coordinates, where <code>Np</code> is the number of valid points in that frame.</li>
+              <li><code>distance</code> <span>shape: Np</span> Per-point range values aligned with the LiDAR point cloud.</li>
+            </ul>
+          </div>
+
+          <div class="schema-group">
+            <h4>Radar</h4>
+            <ul>
+              <li><code>radar/frame_xxxxxx.npz</code> stores the raw radar cube for one frame.</li>
+              <li><code>radar_cube</code> <span>shape: 32 x 128 x 256</span> Complex radar tensor organized by chirps, antennas, and fast-time samples.</li>
+            </ul>
+          </div>
+
+          <div class="schema-group">
+            <h4>GPS</h4>
+            <ul>
+              <li><code>gps/frame_xxxxxx.npz</code> stores position information for the target vehicle.</li>
+              <li><code>true_position</code> <span>shape: 3</span> Ground-truth vehicle position in 3D coordinates.</li>
+              <li><code>measured_position</code> <span>shape: 3</span> GPS-like measured position with noise.</li>
+            </ul>
+          </div>
+
+          <div class="schema-group">
+            <h4>V2I Channel</h4>
+            <ul>
+              <li><code>channel/frame_xxxxxx.npz</code> stores the communication channel for one frame.</li>
+              <li><code>H</code> <span>shape: 1024 x 612</span> Complex V2I channel matrix generated by ray tracing. In the current configuration, the first dimension corresponds to transmit antenna elements and the second dimension corresponds to subcarriers.</li>
+            </ul>
+          </div>
+
+          <div class="schema-group">
+            <h4>Beam Label</h4>
+            <ul>
+              <li><code>beam_label/frame_xxxxxx.json</code> stores codebook-search labels and beam-related annotations.</li>
+              <li><code>best_beam_index_3d</code> <span>shape: 3</span> Optimal beam index in the 3D codebook space, corresponding to distance, azimuth, and elevation dimensions.</li>
+              <li><code>best_power</code> Scalar received power of the selected best beam.</li>
+              <li><code>los_exists</code> Boolean flag indicating whether a LoS path exists.</li>
+              <li><code>topk_indices</code> <span>shape: 5 x 3</span> Top-5 beam candidates represented by 3D codebook indices.</li>
+              <li><code>topk_powers</code> <span>shape: 5</span> Beam power values associated with the top-5 candidates.</li>
+            </ul>
+          </div>
+
+          <div class="schema-group">
+            <h4>meta.json</h4>
+            <ul>
+              <li>One metadata file is stored under each speed run, such as <code>dataset/scene_01/speed_+5/meta.json</code>.</li>
+              <li>Key fields include <code>scene_id</code>, <code>scene_source</code>, <code>run_id</code>, <code>num_frames</code>, <code>total_distance</code>, and <code>frame_interval_s</code>.</li>
+              <li>Motion and sensor offsets are recorded by <code>start_position</code>, <code>velocity_vec</code>, <code>sensing_tx_offset</code>, and <code>comm_rx_offset</code>.</li>
+              <li>Scene conditions include <code>weather_type</code>, <code>enable_occluder_cars</code>, and <code>num_occluder_cars</code>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="usage-panel">
+        <div class="usage-copy">
+          <h3>Minimal loading example</h3>
+          <p>
+            A sample can be loaded from one row of <code>train_index.csv</code> or <code>test_index.csv</code>. The row stores
+            relative paths to every modality, so the loader only needs to join each path with the dataset root.
+          </p>
+
+          <ol class="usage-steps">
+            <li>Read an index file and select one sample row.</li>
+            <li>Load image, LiDAR, radar, GPS, channel, and beam-label files using the row paths.</li>
+            <li>Use the loaded arrays and JSON fields as model inputs or communication labels.</li>
+          </ol>
+        </div>
+
+        <div class="code-block python-code">
+<pre><code><span class="kw">from</span> pathlib <span class="kw">import</span> Path
+<span class="kw">import</span> json
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">from</span> PIL <span class="kw">import</span> Image
+
+root = Path(<span class="str">"dataset"</span>)
+index = pd.read_csv(root / <span class="str">"train_index.csv"</span>)
+sample = index.iloc[<span class="num">0</span>]
+
+camera = Image.open(root / sample.camera_path)
+lidar = np.load(root / sample.lidar_path)
+radar = np.load(root / sample.radar_path)
+gps = np.load(root / sample.gps_path)
+channel = np.load(root / sample.channel_path)
+
+<span class="kw">with</span> open(root / sample.beam_label_path, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    beam_label = json.load(f)
+
+points = lidar[<span class="str">"xyz"</span>]
+radar_cube = radar[<span class="str">"radar_cube"</span>]
+H = channel[<span class="str">"H"</span>]
+best_beam = beam_label[<span class="str">"best_beam_index_3d"</span>]</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legacy dataset draft, kept hidden after the redesigned dataset section. -->
+    <section class="section legacy-dataset" hidden aria-hidden="true">
+      <div class="section-title">
+        <span>Dataset</span>
+        <h2>Organized for reproducible sensing-assisted communication research.</h2>
+      </div>
+
+      <div class="dataset-layout">
+        <div class="code-block">
+<pre>V2X-SenseComm/
+├── scenarios/              # Scenario descriptions, metadata, and layouts
+├── sensing/
+│   ├── radar/              # Radar observations, spectra, or radar tensors
+│   ├── camera/             # Reserved for future RGB images
+│   └── lidar/              # Reserved for future point clouds
+├── communication/
+│   ├── channel/            # Ray-tracing channel responses
+│   ├── beam_power/         # Beam-domain received power or beam responses
+│   └── codebook/           # XL-MIMO beam codebooks
+├── labels/
+│   ├── best_beam_index.csv # Optimal beam labels
+│   └── beam_heatmap/       # Optional beam map or heatmap labels
+├── splits/                 # Train / validation / test splits
+├── configs/                # Scenario, radar, channel, and codebook configs
+├── scripts/                # Data generation and preprocessing scripts
+└── README.md</pre>
+        </div>
+
+        <div class="dataset-notes">
+          <h3>What is included?</h3>
+          <p>
+            The dataset is designed to provide aligned sensing observations and communication labels for
+            learning-based beam prediction.
+          </p>
+
+          <ul>
+            <li>Scenario metadata and vehicle states</li>
+            <li>Radar sensing observations or angular spectra</li>
+            <li>Ray-tracing-based communication channels</li>
+            <li>Beam-domain labels for XL-MIMO V2I links</li>
+            <li>Benchmark-ready train, validation, and test splits; validation samples are randomly split from the training scenarios</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cards-3">
+        <div class="task-card">
+          <h3>Data Format</h3>
+          <p>
+            Each sample links sensing observations, scenario metadata, and communication beam labels through a
+            consistent sample index.
+          </p>
+        </div>
+
+        <div class="task-card">
+          <h3>Data Loading</h3>
+          <p>
+            Example Python dataloaders will be provided for reading radar inputs, beam labels, and train/validation/test splits.
+          </p>
+        </div>
+
+        <div class="task-card">
+          <h3>Visualization</h3>
+          <p>
+            Visualization scripts will support scenario rendering, radar spectrum visualization, and beam heatmap display.
+          </p>
+        </div>
+      </div>
+
+      <div class="resource-row">
+        <a class="resource-card" href="#news">
+          <h3>Download Dataset</h3>
+          <p>Release status and download links will be announced in the news section.</p>
+        </a>
+
+        <a class="resource-card" href="#dataset">
+          <h3>Dataset Format</h3>
+          <p>Review the current directory organization and sample-level data design.</p>
+        </a>
+
+        <a class="resource-card" href="#scenarios">
+          <h3>Example Samples</h3>
+          <p>Browse representative scenario previews and scene categories.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Tutorials -->
+    <section id="tutorials" class="section light tutorial-section">
+      <div class="section-title centered">
+        <span>Tutorials</span>
+        <h2>Dataset generation tutorial</h2>
+        <p class="section-intro">
+          V2X-SenseComm is generated through a complete workflow from map preparation to multimodal sensing,
+          V2I channel simulation, near-field codebook search, and beam-label generation.
+        </p>
+      </div>
+
+      <div class="tutorial-workflow">
+        <h3>Generation workflow</h3>
+        <p>
+          The pipeline starts from OSM-based map construction, adds geometry and materials in Blender, exports
+          Mitsuba/Sionna-ready scenes, and then performs Sionna-based sensing, communication, near-field codebook
+          search, and beam-label generation for each simulated frame.
+        </p>
+
+        <figure class="workflow-figure">
+          <img src="assets/figures/tutorials/v2x-sensecomm-generation-workflow.png" alt="V2X-SenseComm data generation workflow">
+        </figure>
+      </div>
+
+      <div class="tutorial-subsection">
+        <h3>Codebase</h3>
+        <p>
+          The repository separates map assets, configuration files, scene construction, sensing simulators,
+          communication modules, and dataset writing logic. This structure makes the generation process easier
+          to modify: scenes are selected in configuration files, sensors and channel parameters are defined once,
+          and the pipeline executes the frame-wise data collection and labeling workflow.
+        </p>
+      </div>
+
+      <div class="codebase-layout">
+        <div class="codebase-tree">
+          <h4>Project structure</h4>
+<pre>V2X/
+├── run/
+│   └── dataset_generation.py
+├── configs/
+│   ├── base_config.py
+│   └── scene_map.py
+├── scene_builder/
+│   ├── sensing_scene_builder.py
+│   ├── comm_scene_builder.py
+│   ├── sensing_scene_updater.py
+│   └── comm_scene_updater.py
+├── sensors/
+│   ├── camera_simulator.py
+│   ├── lidar_simulator.py
+│   ├── radar_simulator.py
+│   └── gps_simulator.py
+├── communication/
+│   ├── channel_simulator.py
+│   ├── codebook_loader.py
+│   ├── beam_labeler.py
+│   ├── label_writer.py
+│   └── path_utils.py
+├── pipeline/
+│   ├── comm_pipeline.py
+│   └── dataset_pipeline.py
+├── maps/
+├── textures/
+├── codebook/
+├── dataset/
+└── utils/</pre>
+        </div>
+
+        <div class="codebase-details">
+          <article>
+            <h4>run/</h4>
+            <p>Batch-generation entry point.</p>
+            <ul>
+              <li><span class="file-name">dataset_generation.py</span> traverses the configured scene list, runs each speed setting, and launches the complete data generation process.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h4>configs/</h4>
+            <p>Default settings and scene mapping files.</p>
+            <ul>
+              <li><span class="file-name">base_config.py</span> defines sensing scenes, communication scenes, sensor parameters, channel settings, codebook parameters, and traffic defaults.</li>
+              <li><span class="file-name">scene_map.py</span> maps each scene ID to its corresponding XML map file.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h4>scene_builder/</h4>
+            <p>Scene construction and frame-wise scene updates.</p>
+            <ul>
+              <li><span class="file-name">sensing_scene_builder.py</span> builds the perception scene for camera, LiDAR, radar, and GPS collection.</li>
+              <li><span class="file-name">comm_scene_builder.py</span> builds the communication-side scene used for V2I ray tracing.</li>
+              <li><span class="file-name">sensing_scene_updater.py</span> updates vehicles and mounted sensing nodes per frame.</li>
+              <li><span class="file-name">comm_scene_updater.py</span> updates vehicles and communication nodes in the V2I scene for each frame.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h4>sensors/</h4>
+            <p>Modality-specific simulators for synchronized sensing data collection.</p>
+            <ul>
+              <li><span class="file-name">camera_simulator.py</span> renders camera images and supports weather-specific EXR environment textures.</li>
+              <li><span class="file-name">lidar_simulator.py</span> collects LiDAR point clouds and saves them as .npz files.</li>
+              <li><span class="file-name">radar_simulator.py</span> collects radar cubes and saves the raw radar_cube data.</li>
+              <li><span class="file-name">gps_simulator.py</span> records 3D ground-truth positions and noisy measured positions.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h4>communication/</h4>
+            <p>Communication-channel generation, codebook loading, beam search, and label writing.</p>
+            <ul>
+              <li><span class="file-name">channel_simulator.py</span> calls the Sionna RT path solver to generate per-frame V2I channels.</li>
+              <li><span class="file-name">codebook_loader.py</span> loads the predefined near-field beamforming codebook from .npz files.</li>
+              <li><span class="file-name">beam_labeler.py</span> searches the codebook and outputs best beam and top-k candidates.</li>
+              <li><span class="file-name">label_writer.py</span> writes beam labels to frame-level JSON files.</li>
+              <li><span class="file-name">path_utils.py</span> provides LoS checking utilities for communication labels.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h4>pipeline/</h4>
+            <p>Pipeline modules that connect scene updates, sensing capture, channel simulation, label generation, and index writing.</p>
+            <ul>
+              <li><span class="file-name">comm_pipeline.py</span> runs single-frame scene update, channel generation, beam labeling, and saving.</li>
+              <li><span class="file-name">dataset_pipeline.py</span> runs the full frame-wise workflow and writes samples and index files.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h4>maps/, textures/, codebook/</h4>
+            <p>Static assets used by the generation pipeline.</p>
+            <ul>
+              <li><span class="file-name">maps/</span> stores Mitsuba/Sionna-ready urban scene files.</li>
+              <li><span class="file-name">textures/</span> stores EXR environment textures for weather-aware camera rendering.</li>
+              <li><span class="file-name">codebook/</span> stores predefined near-field beamforming codebooks.</li>
+            </ul>
+          </article>
+
+          <article>
+            <h4>dataset/ and utils/</h4>
+            <p>Generated outputs and shared helper functions.</p>
+            <ul>
+              <li><span class="file-name">dataset/</span> stores generated samples, metadata, labels, and train/test index files.</li>
+              <li><span class="file-name">trajectory.py</span> provides vehicle initial-position and velocity-vector generation utilities.</li>
+              <li><span class="file-name">project_paths.py</span> resolves relative paths into project-root absolute paths.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <div class="tutorial-subsection">
+        <h3>How to use</h3>
+        <p>
+          Install the ray-tracing runtime, prepare the exported scene assets, select the scenes and generation
+          parameters, then run the batch script from the project root.
+        </p>
+      </div>
+
+      <div class="code-block tutorial-code tutorial-command-block">
+<pre><code><span class="comment"># Clone the project</span>
+git clone https://github.com/fly-winder/V2X-SenseComm.git
+cd V2X-SenseComm
+
+<span class="comment"># Install TensorFlow/Sionna RT and common Python dependencies</span>
+pip install -r requirements.txt
+
+<span class="comment"># Main configuration entry points</span>
+configs/scene_map.py          <span class="comment"># SCENE_MAP: scene_id -> maps/...xml</span>
+run/dataset_generation.py     <span class="comment"># SPEED_LIST, MOTION_AXIS, WEATHER_TYPE, OUTPUT_ROOT</span>
+configs/base_config.py        <span class="comment"># camera/lidar/radar/gps, channel, array, codebook</span>
+
+<span class="comment"># Run dataset generation</span>
+python run/dataset_generation.py</code></pre>
+      </div>
+    </section>
+
+    <!-- Code -->
+    <section id="code" class="section">
+      <div class="section-title centered">
+        <span>Code</span>
+        <h2>Code repository</h2>
+      </div>
+
+      <div class="code-link-panel">
+        <a href="https://github.com/fly-winder/V2X-SenseComm" target="_blank" rel="noreferrer">fly-winder/V2X-SenseComm</a>
+        <p>The code will be released after publication.</p>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications" class="section light">
+      <div class="section-title centered">
+        <span>Publications</span>
+        <h2>Publications</h2>
+      </div>
+
+      <div class="publication-placeholder">
+        <p>Publications will be updated after the related papers are available.</p>
+      </div>
+    </section>
+
+    <!-- Download -->
+    <section id="download" class="section">
+      <div class="section-title centered">
+        <span>Download</span>
+        <h2>Download</h2>
+      </div>
+
+      <div class="download-placeholder">
+        <p>The V2X-SenseComm dataset will be released on Hugging Face.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Contact -->
+  <footer id="contact" class="footer">
+    <h2>V2X-SenseComm</h2>
+
+    <p>
+      Research homepage for V2X-SenseComm, multimodal V2X sensing, and communication research.
+    </p>
+
+    <p>
+      For questions about the dataset, code, or research collaboration, please contact the project maintainer.
+    </p>
+
+    <p class="small">
+      Southeast University | GitHub: fly-winder
+    </p>
+
+    <p class="small">
+      (c) 2026 V2X-SenseComm. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    const navLinks = Array.from(document.querySelectorAll(".nav a[href^='#']"));
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    function updateActiveNav() {
+      const offset = 120;
+      let currentId = "home";
+
+      sections.forEach((section) => {
+        if (window.scrollY >= section.offsetTop - offset) {
+          currentId = section.id;
+        }
+      });
+
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 6) {
+        currentId = sections[sections.length - 1].id;
+      }
+
+      navLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+      });
+    }
+
+    updateActiveNav();
+    window.addEventListener("scroll", updateActiveNav, { passive: true });
+    window.addEventListener("resize", updateActiveNav);
+  </script>
+</body>
+</html>
