@@ -294,28 +294,28 @@
 
       <div class="dataset-sync-grid">
         <article>
-          <img class="sync-frame" data-sequence="image" src="assets/figures/dataset/scene12-speed25-sync/image/frame_000000.webp" alt="Synchronized camera image sequence for scene 12 speed +25 m/s">
+          <canvas class="sync-canvas" data-sequence="image" width="720" height="405" aria-label="Synchronized camera image sequence for scene 12 speed +25 m/s"></canvas>
           <h3>Image</h3>
         </article>
 
         <article>
-          <img class="sync-frame" data-sequence="lidar" src="assets/figures/dataset/scene12-speed25-sync/lidar/frame_000000.webp" alt="Synchronized LiDAR point cloud sequence for scene 12 speed +25 m/s">
+          <canvas class="sync-canvas" data-sequence="lidar" width="720" height="405" aria-label="Synchronized LiDAR point cloud sequence for scene 12 speed +25 m/s"></canvas>
           <h3>LiDAR</h3>
         </article>
 
         <article>
-          <img class="sync-frame" data-sequence="radar" src="assets/figures/dataset/scene12-speed25-sync/radar/frame_000000.webp" alt="Synchronized radar FFT angle spectrum sequence for scene 12 speed +25 m/s">
+          <canvas class="sync-canvas" data-sequence="radar" width="720" height="405" aria-label="Synchronized radar FFT angle spectrum sequence for scene 12 speed +25 m/s"></canvas>
           <h3>Radar</h3>
         </article>
 
         <article>
-          <img class="sync-frame" data-sequence="channel" src="assets/figures/dataset/scene12-speed25-sync/channel/frame_000000.webp" alt="Synchronized channel snapshot sequence for scene 12 speed +25 m/s">
+          <canvas class="sync-canvas" data-sequence="channel" width="720" height="405" aria-label="Synchronized channel snapshot sequence for scene 12 speed +25 m/s"></canvas>
           <h3>Channel</h3>
         </article>
       </div>
 
       <figure class="dataset-metadata-demo">
-        <img class="sync-frame" data-sequence="metadata" src="assets/figures/dataset/scene12-speed25-sync/metadata/frame_000000.webp" alt="Synchronized measured GPS and beam label metadata for scene 12 speed +25 m/s">
+        <canvas class="sync-canvas sync-metadata-canvas" data-sequence="metadata" width="1180" height="170" aria-label="Synchronized measured GPS and beam label metadata for scene 12 speed +25 m/s"></canvas>
       </figure>
 
       <div class="dataset-explain-wide">
@@ -859,30 +859,51 @@ python run/dataset_generation.py</code></pre>
     window.addEventListener("scroll", updateActiveNav, { passive: true });
     window.addEventListener("resize", updateActiveNav);
 
-    const syncFrames = Array.from(document.querySelectorAll(".sync-frame"));
-    const syncBase = "assets/figures/dataset/scene12-speed25-sync";
+    const syncCanvases = Array.from(document.querySelectorAll(".sync-canvas"));
+    const syncSpriteBase = "assets/figures/dataset/scene12-speed25-sprites";
     const syncFrameCount = 40;
+    const syncFrameInterval = 160;
+    const syncSprites = {};
     let syncFrameIndex = 0;
+    let syncLoadedCount = 0;
 
-    function setSynchronizedFrame(index) {
-      const frameName = `frame_${String(index).padStart(6, "0")}.webp`;
-      syncFrames.forEach((img) => {
-        img.src = `${syncBase}/${img.dataset.sequence}/${frameName}`;
+    function drawSynchronizedFrame(index) {
+      syncCanvases.forEach((canvas) => {
+        const sprite = syncSprites[canvas.dataset.sequence];
+        if (!sprite || !sprite.complete) return;
+        const ctx = canvas.getContext("2d");
+        const frameHeight = canvas.height;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(
+          sprite,
+          0,
+          index * frameHeight,
+          canvas.width,
+          frameHeight,
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
       });
     }
 
-    for (let i = 1; i < syncFrameCount; i += 1) {
-      const frameName = `frame_${String(i).padStart(6, "0")}.webp`;
-      syncFrames.forEach((img) => {
-        const preload = new Image();
-        preload.src = `${syncBase}/${img.dataset.sequence}/${frameName}`;
-      });
-    }
-
-    setInterval(() => {
-      syncFrameIndex = (syncFrameIndex + 1) % syncFrameCount;
-      setSynchronizedFrame(syncFrameIndex);
-    }, 160);
+    syncCanvases.forEach((canvas) => {
+      const sequence = canvas.dataset.sequence;
+      const sprite = new Image();
+      sprite.onload = () => {
+        syncLoadedCount += 1;
+        if (syncLoadedCount === syncCanvases.length) {
+          drawSynchronizedFrame(0);
+          setInterval(() => {
+            syncFrameIndex = (syncFrameIndex + 1) % syncFrameCount;
+            drawSynchronizedFrame(syncFrameIndex);
+          }, syncFrameInterval);
+        }
+      };
+      sprite.src = `${syncSpriteBase}/${sequence}.webp`;
+      syncSprites[sequence] = sprite;
+    });
   </script>
 </body>
 </html>
